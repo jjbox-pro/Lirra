@@ -1,2 +1,2 @@
-# lirra
+# Lirra
 Lirra Engine
