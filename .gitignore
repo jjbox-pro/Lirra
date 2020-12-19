@@ -1,0 +1,10 @@
+# Directories
+
+bin/
+build/
+include/
+lib/
+
+# Files
+
+*.user

@@ -12,18 +12,23 @@ DEFINES += LIRRA_LIBRARY
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    lirra.cpp
-
-HEADERS += \
-    lirra_global.h \
-    lirra.h
-
-# Указываем заголовочные файлы, которые будут скопированы в директорию INCLUDE_PATH
-translations.files = $$files($${PWD}/*.h)
-
 # Default rules for deployment.
 unix {
     target.path = /usr/lib
 }
 !isEmpty(target.path): INSTALLS += target
+
+
+HEADERS += lirra.h
+
+
+for(HEADER, HEADERS) {
+    EXPORTED_HEADERS += $${PWD}/$${HEADER}
+}
+
+
+include(lirra/lirra.pri)
+
+
+exportHeaderFiles($$EXPORTED_HEADERS, $$replace(PWD,[^/]+$,$$__EMPTY__)) # Если использовать ? в регэкспе, то при выполнении QMAKE такой регэксп косячится (по крайней мере команда mkpath с полученной строкой, не работает или работает некорректно)
+

@@ -1,13 +1,16 @@
-#include "lirra.h"
+#include <lirra.h>
 
-#include <iostream>
+class Sandbox : public lirra::Application{
+public:
+    Sandbox(){};
 
+    ~Sandbox(){};
 
-int main()
-{
-    lirra::printMessage();
+    void run(){
+        std::cout << "Sandbox" << std::endl;
+    };
+};
 
-    std::cin.get();
-
-    return 0;
-}
+lirra::Application* lirra::createApplication(){
+    return new Sandbox();
+};

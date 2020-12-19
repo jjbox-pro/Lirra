@@ -1,10 +1,8 @@
 #ifndef LIRRA_H
 #define LIRRA_H
 
-#include "lirra_global.h"
+#include "lirra/application.h"
 
-namespace lirra {
-    LIRRA_EXPORT void printMessage();
-}
+#include "lirra/entry_point.h"
 
 #endif // LIRRA_H

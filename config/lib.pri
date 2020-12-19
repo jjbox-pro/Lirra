@@ -12,11 +12,35 @@ TARGET = $${TARGET}$${LIB_BUILD_SUFFIX} # Добавляем к имене вы�
 #QMAKE_TARGET_COPYRIGHT = (c) My Company Name
 
 
-# Настраиваем копирование заголовочных файлов с помощью модуля file_copies
-CONFIG += file_copies
+defineTest(exportHeaderFiles){
+    FILES = $$1
 
-    COPIES += translations
+    BASE = $$2
 
-    translations.path = $$INCLUDE_PATH
+    !exists($$INCLUDE_PATH): mkpath($$INCLUDE_PATH)
 
-    #translations.files = $$files($${PWD}/*.h) # Данная переменная устанавливается в .pro файле конкретной библеотеки
+    #message(__BASE__: $$BASE)
+
+    for(FILE, FILES) {
+        #message(__FILE__: $$FILE)
+
+        !isEmpty(BASE){
+            DDIR = $$replace(FILE,[^/]+$,$$__EMPTY__)
+
+            DDIR = $${INCLUDE_PATH}/$$replace(DDIR,$$BASE,$$__EMPTY__)
+        } else {
+            DDIR = $${INCLUDE_PATH}
+        }
+
+        #message(__DDIR__: $$DDIR)
+
+        !exists($$DDIR): mkpath($$DDIR)
+
+        win32:FILE ~= s,/,\\,g
+        win32:DDIR ~= s,/,\\,g
+
+        QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$FILE) $$quote($$DDIR) $$escape_expand(\\n\\t)
+    }
+
+    export(QMAKE_POST_LINK)
+}
