@@ -12,6 +12,6 @@ namespace lirra {
     }
 
     void Application::run(){
-        std::cout << "Application run" << std::endl;
+        std::cout << "Application run!" << std::endl;
     }
 }

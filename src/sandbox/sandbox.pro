@@ -11,7 +11,9 @@ CONFIG -= qt
 LIBS += -llirra$${LIB_BUILD_SUFFIX}
 
 # Указаем пути к каталогам заголовочных файлов внутренних (собираемых) библеотек.
-INCLUDEPATH +=  $${PROJECT_ROOT_PATH}/src/lirra/
+INCLUDEPATH += \
+    $${PROJECT_ROOT_PATH}/src/lirra/ \
+    $${PROJECT_ROOT_PATH}/src/lirra/import/spdlog/include/
 
 SOURCES += \
         main.cpp

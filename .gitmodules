@@ -1,0 +1,3 @@
+[submodule "src/lirra/import/spdlog"]
+	path = src/lirra/import/spdlog
+	url = https://github.com/gabime/spdlog.git

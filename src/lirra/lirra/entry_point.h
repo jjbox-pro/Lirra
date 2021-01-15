@@ -5,6 +5,8 @@
 #ifdef LIRRA_PLATFORM_WINDOWS
     int main(int argc, char** argv)
     {
+        lirra::Log::init();
+
         auto app = lirra::createApplication();
 
         app->run();

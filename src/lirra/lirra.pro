@@ -19,8 +19,10 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 
-HEADERS += lirra.h
+INCLUDEPATH += $${PROJECT_ROOT_PATH}/src/lirra/import/spdlog/include/ # Импортирумые заголовочные файлы бибилотеки для логированя
 
+
+HEADERS += lirra.h
 
 for(HEADER, HEADERS) {
     EXPORTED_HEADERS += $${PWD}/$${HEADER}
@@ -28,7 +30,7 @@ for(HEADER, HEADERS) {
 
 
 include(lirra/lirra.pri)
+include(import/import.pri)
 
 
 exportHeaderFiles($$EXPORTED_HEADERS, $$replace(PWD,[^/]+$,$$__EMPTY__)) # Если использовать ? в регэкспе, то при выполнении QMAKE такой регэксп косячится (по крайней мере команда mkpath с полученной строкой, не работает или работает некорректно)
-
